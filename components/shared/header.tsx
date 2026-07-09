@@ -78,7 +78,7 @@ export function Header() {
         </Button>
       </div>
 
-      {/* Mobile nav */}
+      {/* Mobile navigation */}
       <div className="flex gap-1 border-t border-border bg-background px-4 py-2 md:hidden">
         <Link href="/explore" className="flex-1">
           <Button
