@@ -65,7 +65,11 @@ export function ListFilters({
           <label className="text-sm font-medium text-muted-foreground block mb-2">
             Category
           </label>
-          <Select value={category} onValueChange={onCategoryChange} disabled={isLoading}>
+          <Select
+            value={category}
+            onValueChange={(value) => onCategoryChange(value ?? 'all')}
+            disabled={isLoading}
+          >
             <SelectTrigger aria-label="Filter by category">
               <SelectValue />
             </SelectTrigger>
@@ -85,7 +89,11 @@ export function ListFilters({
           <label className="text-sm font-medium text-muted-foreground block mb-2">
             Sort By
           </label>
-          <Select value={sortBy} onValueChange={onSortChange} disabled={isLoading}>
+          <Select
+            value={sortBy}
+            onValueChange={(value) => value && onSortChange(value as 'price-asc' | 'price-desc' | 'rating-desc' | 'title-asc')}
+            disabled={isLoading}
+          >
             <SelectTrigger aria-label="Sort products">
               <SelectValue />
             </SelectTrigger>
