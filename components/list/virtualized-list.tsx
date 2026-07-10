@@ -1,6 +1,6 @@
 'use client';
 
-import { FixedSizeGrid as Grid } from 'react-window';
+import { Grid } from 'react-window';
 import { Product } from '@/lib/types';
 import { ProductCard } from './product-card';
 
@@ -44,9 +44,15 @@ export function VirtualizedProductGrid({
           left: (style.left as number) + GAP / 2,
           top: (style.top as number) + GAP / 2,
         }}
-        className="flex"
+        className="flex cursor-pointer"
+        onClick={() => onProductClick(product.id)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') onProductClick(product.id);
+        }}
       >
-        <ProductCard product={product} onClick={() => onProductClick(product.id)} />
+        <ProductCard product={product} />
       </div>
     );
   };
