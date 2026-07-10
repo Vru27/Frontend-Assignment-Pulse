@@ -8,7 +8,7 @@ import {
   getCategoryStats,
   getPriceDistribution,
 } from './api';
-import { Product, ProductsResponse, DashboardStats, CategoryStats } from './types';
+import { Product, ProductsResponse, DashboardStats, CategoryStats, Category } from './types';
 
 export function useProducts(
   skip: number,
@@ -34,7 +34,7 @@ export function useProductDetail(id: number | null): UseQueryResult<Product> {
   });
 }
 
-export function useCategories(): UseQueryResult<string[]> {
+export function useCategories(): UseQueryResult<Category[]> {
   return useQuery({
     queryKey: ['categories'],
     queryFn: getAllCategories,

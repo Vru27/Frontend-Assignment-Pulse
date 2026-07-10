@@ -67,3 +67,9 @@ export interface CategoryStats {
   avgPrice: number;
   avgRating: number;
 }
+
+export interface Category {
+  slug: string;
+  name: string;
+  url: string;
+}

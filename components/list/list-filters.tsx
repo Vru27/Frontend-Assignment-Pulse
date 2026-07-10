@@ -12,6 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 import { useCategories } from '@/lib/hooks';
+import { Category } from '@/lib/types';
 
 interface ListFiltersProps {
   search: string;
@@ -59,7 +60,7 @@ export function ListFilters({
           />
         </div>
 
- 
+
         <div className="w-full md:w-48">
           <label className="text-sm font-medium text-muted-foreground block mb-2">
             Category
@@ -70,9 +71,10 @@ export function ListFilters({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Categories</SelectItem>
-              {categories && Array.isArray(categories) && categories.map((cat: string) => (
-                <SelectItem key={cat} value={cat}>
-                  {typeof cat === 'string' ? cat.charAt(0).toUpperCase() + cat.slice(1) : String(cat)}
+
+              {categories?.map((cat: Category) => (
+                <SelectItem key={cat.slug} value={cat.slug}>
+                  {cat.name}
                 </SelectItem>
               ))}
             </SelectContent>

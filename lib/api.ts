@@ -42,12 +42,18 @@ export async function getProducts(
   category?: string
 ): Promise<ProductsResponse> {
   try {
-    let url = `${API_BASE}?skip=${skip}&limit=${limit}`;
+    let url: string;
+
+    if (category && category !== 'all') {
+      url = `${API_BASE}/category/${category}?skip=${skip}&limit=${limit}`;
+    } else {
+      url = `${API_BASE}?skip=${skip}&limit=${limit}`;
+    }
 
     if (searchTerm && searchTerm.trim()) {
       const searchUrl = `${API_BASE}?skip=0&limit=194`;
       const allData = await fetchWithCache(searchUrl);
-      
+
       const filtered = allData.products.filter((p: Product) =>
         p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         p.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -89,13 +95,11 @@ export async function getProductById(id: number): Promise<Product> {
   }
 }
 
-export async function getAllCategories(): Promise<string[]> {
+export async function getAllCategories(): Promise<Category[]> {
   try {
-    const url = `${API_BASE}/categories`;
-    const categories = await fetchWithCache(url);
+    const categories = await fetchWithCache(`${API_BASE}/categories`);
     return Array.isArray(categories) ? categories : [];
-  } catch (error) {
-    console.error('Error fetching categories:', error);
+  } catch {
     return [];
   }
 }
