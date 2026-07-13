@@ -1,4 +1,4 @@
-import { Product, ProductsResponse, FilterParams, DashboardStats, CategoryStats } from './types';
+import { Product, ProductsResponse, FilterParams, DashboardStats, CategoryStats, Category } from './types';
 
 const API_BASE = 'https://dummyjson.com/products';
 const CACHE_TIME = 5 * 60 * 1000; // 5 minutes

@@ -80,13 +80,13 @@ export function PriceDistributionChart({ data }: PriceDistributionProps) {
             <PieChart>
               <Pie
                 data={filteredData}
+                dataKey="count"
+                nameKey="range"
                 cx="50%"
                 cy="50%"
-                labelLine={false}
-                label={(entry: { range: string; count: number }) => `${entry.range}: ${entry.count}`}
                 outerRadius={80}
-                fill="#8884d8"
-                dataKey="count"
+                label
+
               >
                 {filteredData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
